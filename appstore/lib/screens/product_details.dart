@@ -32,7 +32,11 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Details'),
+        title: Text('Product Details',style: TextStyle(color: Colors.blue),),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.blue
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
