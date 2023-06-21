@@ -10,10 +10,17 @@ class FavoritoScreen extends StatefulWidget {
 class _FavoritoScreenState extends State<FavoritoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        'Favoritos',
-        style: TextStyle(fontSize: 50),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Favoritos',
+          style: TextStyle(color: Colors.blue),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Text("Favorito"),
       ),
     );
   }

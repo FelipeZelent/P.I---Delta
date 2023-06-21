@@ -10,10 +10,17 @@ class PerfilScreen extends StatefulWidget {
 class _PerfilScreenState extends State<PerfilScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        'Perfil',
-        style: TextStyle(fontSize: 50),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Perfil',
+          style: TextStyle(color: Colors.blue),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Text("Perfil"),
       ),
     );
   }
