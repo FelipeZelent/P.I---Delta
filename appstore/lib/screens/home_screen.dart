@@ -1,11 +1,10 @@
-import 'package:appstore/screens/carrinho_screen.dart';
-import 'package:appstore/screens/perfil_screen.dart';
-import 'package:appstore/screens/produtos_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
-
+import 'carrinho_screen.dart';
 import 'favorito_screen.dart';
+import 'package:appstore/detalhes_produtos.dart';
+import 'perfil_screen.dart';
+import 'produtos_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

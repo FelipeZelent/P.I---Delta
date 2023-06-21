@@ -81,23 +81,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   fontSize: 18,
                 ),
               ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: isInCart ? null : () => addToCart(widget.product),
-                    child: Text(isInCart ? 'No Carrinho' : 'Adicionar ao Carrinho'),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
-                    ),
-                    onPressed: toggleFavorite,
-                  ),
-                ],
-              ),
+              
             ],
           ),
         ),

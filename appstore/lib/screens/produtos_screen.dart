@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'product_details.dart';
+
+import '../detalhes_produtos.dart';
 
 class ProdutoScreen extends StatefulWidget {
-  const ProdutoScreen({Key? key}) : super(key: key);
-  
+  const ProdutoScreen({super.key});
 
   @override
   State<ProdutoScreen> createState() => _ProdutoScreenState();
@@ -14,7 +15,7 @@ class ProdutoScreen extends StatefulWidget {
 class _ProdutoScreenState extends State<ProdutoScreen> {
   List<dynamic> products = [];
   List<String> categories = [];
-  String? selectedCategory = null;
+  String? selectedCategory; // Alterado para String?
 
   @override
   void initState() {
@@ -29,14 +30,9 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
-      if (mounted) {
-        setState(() {
-          categories = data.take(6).cast<String>().toList();
-        });
-      }
-    } else {
-      // Tratar erro na resposta da API
-      print('Erro ao buscar categorias');
+      setState(() {
+        categories = data.take(6).cast<String>().toList();
+      });
     }
   }
 
@@ -44,15 +40,10 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
     var url = Uri.parse('https://fakestoreapi.com/products');
     var response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      if (mounted) {
-        setState(() {
-          products = json.decode(response.body);
-        });
-      }
-    } else {
-      // Tratar erro na resposta da API
-      print('Erro ao buscar produtos');
+    if (response.statusCode == 200 && mounted) {
+      setState(() {
+        products = json.decode(response.body);
+      });
     }
   }
 
@@ -82,13 +73,12 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Delta',
-          style: TextStyle(color: Colors.blue),
-        ),
+        title: Text('Delta',style: TextStyle(color: Colors.blue),),
         centerTitle: true,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.blue),
+        iconTheme: IconThemeData(
+          color: Colors.blue
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -99,7 +89,7 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 8.0),
+            padding: const EdgeInsets.only(left:8.0),
             child: Row(
               children: [
                 Container(
@@ -109,7 +99,6 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
                   ),
                 ),
                 Expanded(
-                  //Categoria
                   child: Container(
                     height: 50,
                     child: ListView.builder(
@@ -141,7 +130,7 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
           Flexible(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(8.0),
-              child: ListView.separated(
+              child: ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: filteredProducts.length,
@@ -192,9 +181,6 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
                       ),
                     ),
                   );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 8);
                 },
               ),
             ),

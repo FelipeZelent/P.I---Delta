@@ -1,6 +1,24 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
-import 'home_screen.dart';
+import 'screens/home_screen.dart';
+
+class APIService {
+  static Future<Map<String, dynamic>> login(String username, String password) async {
+    final url = Uri.parse('https://fakestoreapi.com/auth/login');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({'username': username, 'password': password});
+
+    final response = await http.post(url, headers: headers, body: body);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception('Falha no login. Verifique o nome de usuário e a senha.');
+    }
+  }
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,8 +56,7 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           builder: (context) => AlertDialog(
             title: Text('Erro de Login'),
-            content: Text(
-                'Usuário ou senha incorretos. Por favor, tente novamente.'),
+            content: Text('Usuário ou senha incorretos. Por favor, tente novamente.'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -55,8 +72,7 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Erro de Login'),
-          content: Text(
-              'Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.'),
+          content: Text('Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -82,17 +98,13 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 TextField(
                   controller: _usernameController,
-                  decoration: InputDecoration(
-                    labelText: 'User'
-                  ),
+                  decoration: InputDecoration(labelText: 'User'),
                 ),
                 SizedBox(height: 10),
                 TextField(
                   controller: _passwordController,
                   obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password'
-                  ),
+                  decoration: InputDecoration(labelText: 'Password'),
                 ),
                 SizedBox(height: 15),
                 ElevatedButton(
