@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import '../detalhes_produtos.dart';
+
 
 class ProdutoScreen extends StatefulWidget {
   const ProdutoScreen({super.key});
@@ -79,12 +78,7 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
         iconTheme: IconThemeData(
           color: Colors.blue
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
+        
       ),
       body: Column(
         children: [
