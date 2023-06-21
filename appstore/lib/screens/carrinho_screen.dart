@@ -62,7 +62,7 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
               subtitle: Row(
                 children: [
                   Text('Preço: \$${price.toStringAsFixed(2)}'),
-                  Spacer(), // Adiciona um espaço flexível
+                  Spacer(), 
                   Row(
                     children: [
                       IconButton(
@@ -104,7 +104,7 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
         },
       ),
       bottomNavigationBar: Container(
-        height: 72, // Altura fixa para o contêiner
+        height: 72,
         color: Colors.white,
         padding: EdgeInsets.all(16.0),
         child: Row(

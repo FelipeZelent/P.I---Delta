@@ -21,7 +21,6 @@ class _ProductDetailsState extends State<ProductDetails> {
       isInCart = true;
     });
 
-    // Adicionar o produto à lista de itens do carrinho
     ShoppingCart.addItem(product);
   }
 

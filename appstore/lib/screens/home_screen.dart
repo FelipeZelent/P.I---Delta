@@ -14,10 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0; // Defina o índice inicial como 0
+  int _selectedIndex = 0; 
 
   final List<Widget> _pages = [
-    ProdutoScreen(), // Adicione o ProdutoScreen como a primeira página
+    ProdutoScreen(), 
     CarrinhoScreen(),
     FavoritoScreen(),
     PerfilScreen(),
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex], // Exiba a página com base no índice selecionado
+      body: _pages[_selectedIndex], 
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
