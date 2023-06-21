@@ -1,3 +1,5 @@
+import 'package:appstore/screens/carrinho_screen.dart';
+import 'package:appstore/shoppingcart.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -12,14 +14,15 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   bool isFavorite = false;
   bool isInCart = false;
+  List<dynamic> cartItems = [];
 
   void addToCart(dynamic product) {
     setState(() {
       isInCart = true;
     });
 
-    // Aqui você pode adicionar a lógica para adicionar o produto ao carrinho
-    print('Produto adicionado ao carrinho: ${product['title']}');
+    // Adicionar o produto à lista de itens do carrinho
+    ShoppingCart.addItem(product);
   }
 
   void toggleFavorite() {
@@ -32,11 +35,12 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Details',style: TextStyle(color: Colors.blue),),
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Colors.blue
+        title: Text(
+          'Product Details',
+          style: TextStyle(color: Colors.blue),
         ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.blue),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -81,7 +85,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   fontSize: 18,
                 ),
               ),
-              
+              ElevatedButton(
+                onPressed: () {
+                  addToCart(widget.product);
+                },
+                child: Text('Add to Cart'),
+              )
             ],
           ),
         ),
